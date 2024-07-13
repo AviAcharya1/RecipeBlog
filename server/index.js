@@ -26,7 +26,6 @@ const verifyToken = require("./Middleware/middleware");
 const RecipeRoute = require("./routes/RecipeRoute");
 const ForgotPassword = require("./routes/forgotPassword");
 
-
 app.use("/auth", RegisterRoute);
 app.use("/auth", LoginRoute);
 app.use("/auth", RecipeRoute);
@@ -35,10 +34,12 @@ app.use("/auth", ForgotPassword);
 
 router.get("/", verifyToken, Home.Home);
 
-module.exports = router;
+// Export the app for Vercel
+module.exports = app;
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server Started on port ${process.env.PORT}`);
-});
-
-
+// You can also listen to the port locally when not on Vercel
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(process.env.PORT, () => {
+    console.log(`Server started on port ${process.env.PORT}`);
+  });
+}
