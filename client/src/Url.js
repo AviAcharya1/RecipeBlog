@@ -1,1 +1,1 @@
-export const baseUrl=`http://localhost:8001`
+export const baseUrl=`https://recipeblog-gamma.vercel.app`
