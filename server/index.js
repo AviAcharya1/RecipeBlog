@@ -1,4 +1,5 @@
 const express = require("express");
+const app = express();
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -9,7 +10,6 @@ console.log('Starting server initialization...');
 
 dotenv.config();
 
-const app = express();
 
 // Middleware
 app.use(express.json());
