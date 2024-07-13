@@ -11,7 +11,7 @@ const router = express.Router();
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: ["https://recipe-blog-c06e4c8d6-aviacharya1s-projects.vercel.app/signup"],
+  origin: "*",
   methods: ["POST", "GET", "PUT", "DELETE"],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
@@ -32,14 +32,23 @@ app.use("/auth", RecipeRoute);
 app.use("/auth", router);
 app.use("/auth", ForgotPassword);
 
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
 router.get("/", verifyToken, Home.Home);
 
+app.get('/', (req, res) => {
+  res.send('Backend is running');
+});
 // Export the app for Vercel
 module.exports = app;
 
 // You can also listen to the port locally when not on Vercel
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(process.env.PORT, () => {
-    console.log(`Server started on port ${process.env.PORT}`);
-  });
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   app.listen(process.env.PORT, () => {
+//     console.log(`Server started on port ${process.env.PORT}`);
+//   });
+// }
