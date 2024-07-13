@@ -11,7 +11,7 @@ const router = express.Router();
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: ["http://localhost:5173"],
+  origin: ["https://recipe-blog-c06e4c8d6-aviacharya1s-projects.vercel.app/signup"],
   methods: ["POST", "GET", "PUT", "DELETE"],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
